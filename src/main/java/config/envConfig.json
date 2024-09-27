@@ -1,0 +1,35 @@
+{
+	"prod":{
+				"uri":"https://us-central1-qa01-tekarch-accmanager.cloudfunctions.net",
+				"endpoints":{
+					"login":"/login",				
+					"getdata":"/getdata",
+					"addData":"/addData",
+					"updatedata":"/updateData",
+					"deletedata":"/deleteData",
+					"logout":"/logout"
+					}	
+			},
+	"qa":{
+		"uri":"https://qa-us-central1-qa01-tekarch-accmanager.cloudfunctions.net",
+		"endpoints":{
+					"login":"/login",
+					"getdata":"/getdata",
+					"addData":"/addData",
+					"updatedata":"/updateData",
+					"deletedata":"/deleteData",
+					"logout":"/logout"
+					}
+		},
+	"staging":{
+		"uri":"https://stage-us-central1-qa01-tekarch-accmanager.cloudfunctions.net",
+		"endpoints":{
+					"login":"/login",
+					"getdata":"/getdata",
+					"addData":"/addData",
+					"updatedata":"/updateData",
+					"deletedata":"/deleteData",
+					"logout":"/logout"
+					}
+			}
+}

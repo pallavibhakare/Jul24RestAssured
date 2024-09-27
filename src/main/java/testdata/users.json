@@ -1,0 +1,14 @@
+{
+	"data":{
+		"accountno":"11223344",
+		"departmentno":"4",
+		"salary":"789000",
+		"pincode":"123456"
+	},
+	"data2":{
+		"accountno":"44223344",
+		"departmentno":"1",
+		"salary":"789000",
+		"pincode":"123456"
+	}
+}

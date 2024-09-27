@@ -1,0 +1,14 @@
+{
+"login_TC01":[
+		"201",
+		"Success"
+],
+"login_TC02":[
+		"401",
+		"Fatal"
+],
+"login_TC03":[
+		"404",
+		"Not Found"
+]
+}

@@ -1,0 +1,32 @@
+{
+	"prod":{
+		"valid":{
+				"username":"july2024.pallavi@tekarch.com",
+				"password":"Admin123"
+				},
+		"invalid":{
+				"username":"july20.pallavi@tekarch.com",
+				"password":"Admin"
+		}
+	},
+	"qa":{
+		"valid":{
+				"username":"july2024.pallavi@tekarch.com",
+				"password":"Admin123"
+				},
+		"invalid":{
+				"username":"july20.pallavi@tekarch.com",
+				"password":"Admin"
+		}
+	},
+	"stag":{
+		"valid":{
+				"username":"july2024.pallavi@tekarch.com",
+				"password":"Admin123"
+				},
+		"invalid":{
+				"username":"july20.pallavi@tekarch.com",
+				"password":"Admin"
+		}
+	}
+}
