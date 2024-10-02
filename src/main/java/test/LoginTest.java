@@ -62,7 +62,7 @@ public class LoginTest extends BaseTest{
 		headers.put("token", generateToken());
 		
 		Response res = RestUtils.resPost(RestAssured.baseURI + endPoint, headers, payload);
-		
+	
 		res.then().assertThat().statusCode(201);
 	}
 
@@ -84,11 +84,14 @@ public class LoginTest extends BaseTest{
 //		System.out.println("getUserInfo"+getUserInfo); 
 		
 		res.then().assertThat().statusCode(200);
+		
+		userid = res.jsonPath().getString("userid[0]");
 		id = JsonPath.read(getUserInfo, "$.id");
-//		System.out.println("Extracted recordID: " + id);
+		System.out.println("Extracted userId: " + userid);
+		System.out.println("Extracted recordID: " + id);
 	}
 	@Test
-	public void getData_TC() throws IOException {
+	public void getData_TC04() throws IOException {
 	 
 		String endPoint = DataUtils.getTestData(FileConstants.ENV_CONFIG_FILE_PATH, "$.prod.endpoints.getdata");
 		
@@ -97,14 +100,12 @@ public class LoginTest extends BaseTest{
 		headers.put("token", generateToken());
 		
 		Response getDataResponse = RestUtils.resGet(RestAssured.baseURI + endPoint, headers);		 
-		System.out.println(getDataResponse.asPrettyString());
+//		System.out.println(getDataResponse.asPrettyString());
 		getDataResponse.then().assertThat().statusCode(200);
-		
-		userid = getDataResponse.jsonPath().getString("userid[0]");
 		
 	}
 	@Test
-	public void updateData_TC() throws IOException {
+	public void updateData_TC05() throws IOException {
 	 
 		String endPoint = DataUtils.getTestData(FileConstants.ENV_CONFIG_FILE_PATH, "$.prod.endpoints.updatedata");
 		
@@ -122,13 +123,15 @@ public class LoginTest extends BaseTest{
 		updateRes.then().assertThat().statusCode(200);
 	}
 	
-//	@Test
-	public void deleteData_TC() throws IOException {
+	@Test(dependsOnMethods = "getUsers_TC03")
+	public void deleteData_TC06() throws IOException {
 	 
-		// extratced userid and record id to update record
+		// extratced userid and record id for update record
 		String userId = userid;
 		String recordId=id;
-				
+//		System.out.println("userId "+userId);	
+//		System.out.println("recordId "+recordId);	
+		
 		String endPoint = DataUtils.getTestData(FileConstants.ENV_CONFIG_FILE_PATH, "$.prod.endpoints.deletedata");
 		
 		HashMap<String, String> headers = new HashMap<String, String>();
@@ -137,7 +140,7 @@ public class LoginTest extends BaseTest{
 		
 		HashMap<String, String> payload = new HashMap<String, String>();
 		payload.put("userid", userId);
-		payload.put("id", id);
+		payload.put("id", recordId);
 						
 		Response deleteDataRes = RestUtils.resDelete(RestAssured.baseURI + endPoint, headers, payload);		 
 		deleteDataRes.then().assertThat().statusCode(200);
