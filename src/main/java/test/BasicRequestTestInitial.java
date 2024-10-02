@@ -9,7 +9,7 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
-public class BasicRequestTest {
+public class BasicRequestTestInitial {
 
 	@Test
 	public void login() {
