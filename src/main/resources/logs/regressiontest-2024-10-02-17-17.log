@@ -1,0 +1,16 @@
+2024-10-02-17:17:53 INFO  ExtentReports instance initialized successfully.
+2024-10-02-17:17:57 INFO   getUsers_TC03 : Get User
+2024-10-02-17:17:57 INFO   Making Get request to get records.
+2024-10-02-17:18:15 INFO   Data is added successfully with status code 200
+2024-10-02-17:18:16 INFO   addData_TC02 : Add Data
+2024-10-02-17:18:16 INFO   Making Post request to add data.
+2024-10-02-17:18:17 INFO   Data is added successfully with status code 201
+2024-10-02-17:18:17 INFO   getData_TC04 : Get Data
+2024-10-02-17:18:17 INFO   Making Get request to get records.
+2024-10-02-17:18:31 INFO   Data is displayed successfully with status code 200
+2024-10-02-17:18:31 INFO   updateData_TC05 : Update Data
+2024-10-02-17:18:31 INFO   Making update data request on a record.
+2024-10-02-17:18:33 INFO   Data is updated successfully with status code 200
+2024-10-02-17:18:33 INFO   deleteData_TC06 : Delete Data
+2024-10-02-17:18:33 INFO   Making delete data request on a record.
+2024-10-02-17:18:34 INFO   Data is deleted successfully with status code 200

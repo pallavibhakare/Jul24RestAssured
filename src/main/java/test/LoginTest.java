@@ -45,7 +45,7 @@ public class LoginTest extends BaseTest{
 
 	@Test
 	public void addData_TC02() throws IOException {
-		
+		logger.info(" addData_TC02 : Add Data");
 		//Serialization :Converting an object(userInfo) into a format (like JSON) for storage or transmission.
 		AddUserPojo userInfo = new AddUserPojo("TA-1212333", "1", "123456", "678901");		
 		ObjectMapper om = new ObjectMapper();    //instance of ObjectMapper is responsible for converting between Java objects and JSON. 
@@ -61,20 +61,23 @@ public class LoginTest extends BaseTest{
 		headers.put("Content-Type", "application/json");
 		headers.put("token", generateToken());
 		
+		logger.info(" Making Post request to add data.");
 		Response res = RestUtils.resPost(RestAssured.baseURI + endPoint, headers, payload);
-	
 		res.then().assertThat().statusCode(201);
+		logger.info(" Data is added successfully with status code "+res.getStatusCode());
+		test.get().info("Data is added successfully with status code "+res.getStatusCode() );
 	}
 
 	@Test
 	public void getUsers_TC03() throws IOException {
-	 
+		logger.info(" getUsers_TC03 : Get User");
 		String endPoint = DataUtils.getTestData(FileConstants.ENV_CONFIG_FILE_PATH, "$.prod.endpoints.getdata");
 		
 		HashMap<String, String> headers = new HashMap<String, String>();
 		headers.put("Content-Type", "application/json");
 		headers.put("token", generateToken());
 		
+		logger.info(" Making Get request to get records.");
 		Response res = RestUtils.resGet(RestAssured.baseURI + endPoint, headers);
 		
 		ObjectMapper om = new ObjectMapper();   //who is used for conversion between java objects and json
@@ -84,6 +87,9 @@ public class LoginTest extends BaseTest{
 //		System.out.println("getUserInfo"+getUserInfo); 
 		
 		res.then().assertThat().statusCode(200);
+		logger.info(" Data is added successfully with status code "+res.getStatusCode());
+		test.get().info("Data is added successfully with status code "+res.getStatusCode() );
+		
 		
 		userid = res.jsonPath().getString("userid[0]");
 		id = JsonPath.read(getUserInfo, "$.id");
@@ -93,20 +99,25 @@ public class LoginTest extends BaseTest{
 	@Test
 	public void getData_TC04() throws IOException {
 	 
+		logger.info(" getData_TC04 : Get Data");
 		String endPoint = DataUtils.getTestData(FileConstants.ENV_CONFIG_FILE_PATH, "$.prod.endpoints.getdata");
 		
 		HashMap<String, String> headers = new HashMap<String, String>();
 		headers.put("Content-Type", "application/json");
 		headers.put("token", generateToken());
 		
+		logger.info(" Making Get request to get records.");
 		Response getDataResponse = RestUtils.resGet(RestAssured.baseURI + endPoint, headers);		 
 //		System.out.println(getDataResponse.asPrettyString());
 		getDataResponse.then().assertThat().statusCode(200);
+		logger.info(" Data is displayed successfully with status code "+getDataResponse.getStatusCode());
+		test.get().info("Data is displayed successfully with status code "+getDataResponse.getStatusCode() );
 		
 	}
 	@Test
 	public void updateData_TC05() throws IOException {
 	 
+		logger.info(" updateData_TC05 : Update Data");
 		String endPoint = DataUtils.getTestData(FileConstants.ENV_CONFIG_FILE_PATH, "$.prod.endpoints.updatedata");
 		
 		HashMap<String, String> headers = new HashMap<String, String>();
@@ -117,15 +128,17 @@ public class LoginTest extends BaseTest{
 		ObjectMapper om = new ObjectMapper();
 		String updatedPayload = om.writeValueAsString(updateUserInfo);
 		
-		
+		logger.info(" Making update data request on a record.");
 		Response updateRes = RestUtils.resPut(RestAssured.baseURI + endPoint, headers, updatedPayload);		 
 //		System.out.println(res.asPrettyString());
 		updateRes.then().assertThat().statusCode(200);
+		logger.info(" Data is updated successfully with status code "+updateRes.getStatusCode());
+		test.get().info("Data is updated successfully with status code "+updateRes.getStatusCode() );
 	}
 	
 	@Test(dependsOnMethods = "getUsers_TC03")
 	public void deleteData_TC06() throws IOException {
-	 
+		logger.info(" deleteData_TC06 : Delete Data");
 		// extratced userid and record id for update record
 		String userId = userid;
 		String recordId=id;
@@ -142,8 +155,12 @@ public class LoginTest extends BaseTest{
 		payload.put("userid", userId);
 		payload.put("id", recordId);
 						
+		logger.info(" Making delete data request on a record.");
 		Response deleteDataRes = RestUtils.resDelete(RestAssured.baseURI + endPoint, headers, payload);		 
 		deleteDataRes.then().assertThat().statusCode(200);
+		
+		logger.info(" Data is deleted successfully with status code "+deleteDataRes.getStatusCode());
+		test.get().info("Data is deleted successfully with status code "+deleteDataRes.getStatusCode() );
 	}
 	
 }
